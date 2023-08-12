@@ -1,0 +1,40 @@
+class Solution {
+public:
+    vector<int> threeEqualParts(vector<int>& arr) {
+        int cntone=0;
+        for(int i:arr)
+        if(i==1) cntone++;
+        int n=arr.size();
+        if(cntone==0)
+        return {0,n-1};
+        if(cntone%3!=0)
+        return {-1,-1};
+        int k=cntone/3;
+        int i;
+        for(i=0;i<n;i++)
+        if(arr[i]==1) break;
+        int start=i;
+        int count1=0;
+        for(i=0;i<n;i++){
+            if(arr[i]==1)
+            count1++;
+            if(count1==k+1)
+            break;
+        }
+        int mid=i;
+        count1=0;
+        for(i=0;i<n;i++){
+            if(arr[i]==1)
+            count1++;
+            if(count1==2*k+1)
+            break;
+        }
+        int end=i;
+        while(end<n && arr[start]==arr[mid] && arr[mid]==arr[end]){
+            start++;  mid++;  end++;
+        }
+        if(end==arr.size())
+        return {start-1,mid};
+        return {-1,-1};
+    }
+};
