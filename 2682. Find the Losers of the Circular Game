@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> circularGameLosers(int n, int k) {
+        vector<int>count(n,0),ans;
+        int start=0, i=1;
+        count[start]=1;
+        while(count[start]!=2){
+            start=(start+(i*k))%n;
+            count[start]++;
+            i++;
+        }
+        
+        for(int i=0;i<n;i++){
+            if(count[i]==0)
+            ans.push_back(i+1);
+        }
+        return ans;
+
+    }
+};
