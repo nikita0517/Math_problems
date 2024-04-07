@@ -1,0 +1,19 @@
+class Solution {
+public:
+    long long minOperationsToMakeMedianK(vector<int>& nums, int k) {
+     sort(nums.begin(),nums.end());
+     int n=nums.size();
+     long long ops=0;
+     int mid=nums[n/2];
+     ops+=abs(mid-k);
+     for(int i=0;i<n/2;i++){
+        if(nums[i]>k)
+        ops+=abs(nums[i]-k);
+     } 
+     for(int i=n/2+1;i<n;i++){
+        if(nums[i]<k)
+          ops+=abs(nums[i]-k);
+     }
+     return ops;
+    }
+};
